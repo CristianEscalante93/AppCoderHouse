@@ -2,9 +2,9 @@ import { StyleSheet, Text, View,Image , Pressable} from 'react-native'
 import { colors } from '../Global/colors'
 import CardShadow from '../Wrappers/CardShadow.js'
 
-const ProductItem = ({item}) => {
+const ProductItem = ({item, navigation, route}) => {
   return (
-<Pressable onPress={()=>console.log(item.title)}>
+<Pressable onPress={()=>navigation.navigate("Product", {id:item.id})}>
 <CardShadow style={styles.container}>
         <Image
           style={styles.image}

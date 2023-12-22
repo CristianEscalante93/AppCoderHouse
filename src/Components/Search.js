@@ -20,6 +20,7 @@ const Search = ({setKeyword}) => {
     }
     const removeItem = () => {
         setInput("")
+        setKeyword("")
         setError("")
     }
 

@@ -1,12 +1,16 @@
-import { FlatList, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
+import { FlatList, Pressable, StyleSheet, Text, TextInput, View,Button } from 'react-native'
 import Header from '../Components/Header'
 import Search from '../Components/Search'
 import allProducts from "../Data/products.json"
 import ProductItem from '../Components/ProductItem'
 import { useEffect, useState } from 'react'
+import { colors } from '../Global/colors'
+import { Entypo } from '@expo/vector-icons';
 
 
-const ItemListCategories = ({category}) => {
+
+const ItemListCategories = ({ navigation,route}) => {
+  const {category}= route.params
 
   const [keyword,setKeyword] = useState("")
   const [products,setProducts] = useState(allProducts)
@@ -27,14 +31,14 @@ const ItemListCategories = ({category}) => {
 
   return (
     <>
-      <Header/>
       <Search setKeyword={setKeyword}/>
       <FlatList
         style={styles.container}
         data={products}
         keyExtractor={item => item.id}
-        renderItem={({item})=> <ProductItem item={item}/>}
+        renderItem={({item})=> <ProductItem item={item} navigation={navigation} route={route} />}
       />
+      
     </>
   )
 }
@@ -42,7 +46,18 @@ const ItemListCategories = ({category}) => {
 export default ItemListCategories
 
 const styles = StyleSheet.create({
- container:{
+  container:{
   width:"100%"
- }
+},
+  volver:{
+    padding:10,
+    backgroundColor:colors.color1,
+    width:"100%",
+    flexDirection:"row",
+    justifyContent:"center"
+},
+textVolver:{
+  color: colors.letras
+
+}
 })
