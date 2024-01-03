@@ -1,10 +1,17 @@
 import { StyleSheet, Text, View,Image , Pressable} from 'react-native'
 import { colors } from '../Global/colors'
 import CardShadow from '../Wrappers/CardShadow.js'
+import { useDispatch } from 'react-redux'
+import {setProductSelected } from "../Features/shop/shopSlice.js"
 
 const ProductItem = ({item, navigation, route}) => {
+
+  const dispatch = useDispatch()
+
   return (
-<Pressable onPress={()=>navigation.navigate("Product", {id:item.id})}>
+<Pressable onPress={()=>{
+  dispatch(setProductSelected(item.id))
+  navigation.navigate("Product", {id:item.id})}}>
 <CardShadow style={styles.container}>
         <Image
           style={styles.image}
