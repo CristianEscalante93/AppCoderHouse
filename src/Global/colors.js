@@ -1,6 +1,6 @@
 
 export const colors = {
-    color1:"black",
+    color1:"gray",
     letras:"white"
 
 }

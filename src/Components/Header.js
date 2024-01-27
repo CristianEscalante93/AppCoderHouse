@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
       backgroundColor:colors.color1,
       color: colors.letras,
         width:"100%",
-        height:80,
+        height:100,
         justifyContent:"center",
         alignItems:"center"
     },

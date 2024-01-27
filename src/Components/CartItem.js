@@ -9,7 +9,7 @@ const CartItem = ({item}) => {
       <View style={styles.textContainer}>
         <Text style={styles.text1}>{item.title}</Text>
         <Text style={styles.text2}>{item.brand}</Text>
-        <Text style={styles.text3}>$ {item.price}</Text>
+        <Text style={styles.text3}>Cantidad: {item.quantity} Precio: $ {item.price}</Text>
       </View>
       <Entypo name="trash" size={24} color="black" />
     </View>
