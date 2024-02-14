@@ -1,5 +1,5 @@
 import {useEffect, useState } from 'react'
-import { View, Text ,StyleSheet, Pressable} from 'react-native'
+import { View, Text ,StyleSheet, Pressable, TouchableOpacity} from 'react-native'
 import InputForm from '../Components/InputForm'
 import SubmitButton from '../Components/SubmitButton'
 import { colors } from '../Global/colors'
@@ -76,6 +76,7 @@ const Signup = ({navigation}) => {
             onChangeText={(t) => setPassword(t)}
             isSecure={true}
             error={passwordError}
+            color= {colors.neon}
           />
           <InputForm
             label="Confirm password"
@@ -85,8 +86,9 @@ const Signup = ({navigation}) => {
             error={confirmPasswordError}
 
           />
-          <SubmitButton title="Send" onPress={onSubmit}  
-          />
+          <TouchableOpacity style={styles.loginButton} onPress={onSubmit}>
+						<Text style={styles.loginButtonText}>Enviar</Text>
+					</TouchableOpacity>
           <Text style={styles.sub}>¿Ya tienes una cuenta?</Text>
           <Pressable onPress={()=> navigation.navigate("Login")}>
               <Text style={styles.subLink}>Ingresar</Text>
@@ -108,12 +110,20 @@ const styles = StyleSheet.create({
     },
     container:{
       width:"90%",
-      backgroundColor:colors.color1,
+      backgroundColor:colors.letras,
       gap:15,
       borderRadius:10,
       justifyContent:"center",
       alignItems:"center",
-      paddingVertical:20
+      paddingVertical:20,
+      shadowColor: colors.neon,
+      shadowOffset: {
+        width: 1,
+        height: 12,
+      },
+      shadowOpacity: 0.58,
+      shadowRadius: 16,
+      elevation:25,
     },
     title:{
       fontSize:22,
@@ -126,6 +136,21 @@ const styles = StyleSheet.create({
     subLink:{
       fontSize:14,
       fontFamily:"Josefin",
-      color:"blue"
+      color:"green"
+    },
+    enviar:{
+      backgroundColor: colors.neon
+    },
+    loginButton: {
+      backgroundColor: colors.blue,
+      padding: 15,
+      borderRadius: 8,
+      alignItems: "center",
+      width: "50%"
+    },
+    loginButtonText: {
+      color: colors.letras,
+      fontSize: 16,
+      fontWeight: "bold",
     }
 })

@@ -5,9 +5,14 @@ import { colors } from '../Global/colors'
 import { useDispatch } from 'react-redux'
 import { addItem } from '../Features/cart/cartSlice'
 
-const ItemDetail = ({route}) => {
+const ItemDetail = ({navigation , route}) => {
   const dispatch = useDispatch()
   const product = useSelector((state)=> state.shop.value.productSelected)
+
+  const addCartProduct = ()=>{
+    dispatch(addItem(product))
+    navigation.navigate("CartStack")
+  }
 
   return (
     <View style={styles.container}>
@@ -21,7 +26,7 @@ const ItemDetail = ({route}) => {
       </View>
       <View style={styles.containerPrice}>
         <Text style={styles.price}>$ {product.price}</Text>
-        <Pressable style={styles.boton} onPress={()=>dispatch(addItem(product))}>
+        <Pressable style={styles.boton} onPress={addCartProduct}>
           <Text style={styles.comprar}>🛒</Text>
         </Pressable>
       </View>

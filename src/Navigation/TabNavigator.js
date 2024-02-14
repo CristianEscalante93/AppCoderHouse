@@ -6,6 +6,7 @@ import CartStack from './CartStack.js';
 import OrdersStack from './OrdersStack.js';
 import TabIcon from '../Components/TabIcon.js';
 import ProfileStack from './ProfileStack.js';
+import { colors } from '../Global/colors.js';
 
 const Tab = createBottomTabNavigator();
 
@@ -50,14 +51,9 @@ export default TabNavigator
 
 const styles = StyleSheet.create({
   tabBar:{
-    backgroundColor:"grey",
-    shadowColor:"black",
+    backgroundColor:colors.oscuro,
     elevation:9,
     position: 'absolute',
-    bottom:10,
-    left:20,
-    right:20,
-    borderRadius:15,
     height:90
   }
 })

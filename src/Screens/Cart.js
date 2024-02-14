@@ -1,4 +1,4 @@
-import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native'
+import { FlatList, Pressable, StyleSheet, Text, View ,TouchableOpacity} from 'react-native'
 import allCart from "../Data/cart.json"
 import { useEffect, useState } from 'react'
 import CartItem from '../Components/CartItem'
@@ -6,12 +6,16 @@ import { colors } from '../Global/colors'
 import { useSelector } from 'react-redux'
 import { usePostOrdersMutation } from '../App/service/shopServices'
 
-const Cart = () => {
+const Cart = ({navigation}) => {
 
   const cart= useSelector(state => state.cart.value)
   const [triggerPostOrder] = usePostOrdersMutation()
   const localId = useSelector(state => state.auth.value.localId)
-  console.log(localId, cart)
+
+  const addOrder = ()=>{
+    triggerPostOrder({localId,order:cart})
+    navigation.navigate("OrdersStack" )
+  }
 
   return (
     <View style={styles.container}>
@@ -20,9 +24,9 @@ const Cart = () => {
       keyExtractor={item=>item.id}
       renderItem={({item})=> <CartItem item={item}/>}  />
       <View style={styles.confirmContainer}>
-        <Pressable onPress= {()=> triggerPostOrder({localId,order:cart})}>
-          <Text style={styles.text}>Confirmar!!!</Text>
-        </Pressable>
+        <TouchableOpacity style={styles.Button} onPress={addOrder}>
+						<Text style={styles.text}>Confirmar!!!</Text>
+					</TouchableOpacity>
         <Text style={styles.text}>Total: $ {cart.total}</Text>
       </View>
     </View>
@@ -33,7 +37,7 @@ export default Cart
 
 const styles = StyleSheet.create({
   container:{
-    backgroundColor:"blue",
+    backgroundColor:colors.color1,
     flex:1,
     justifyContent:"flex-end",
     //alignItems:"center",
@@ -49,7 +53,15 @@ const styles = StyleSheet.create({
   },
   text:{
     fontFamily:"PlayFair",
-    fontSize:15,
-    color:colors.letras
+    color: colors.letras,
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  Button:{
+    backgroundColor: colors.blue,
+      padding: 15,
+      borderRadius: 8,
+      alignItems: "center",
+      width: "50%"
   }
 })

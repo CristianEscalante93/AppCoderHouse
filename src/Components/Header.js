@@ -31,7 +31,7 @@ const Header = ({title}) => {
     <View style= {landscape ? styles.containerLandscape : styles.container}>
       <Text style={styles.text}>{title}</Text>
       {localId && <Pressable onPress={onLogout} style={styles.logout}>
-        <MaterialIcons name="logout" size={30} color="black"/>
+        <MaterialIcons name="logout" size={30} color={colors.neon}/>
       </Pressable>}
     </View>
   )
@@ -41,7 +41,7 @@ export default Header
 
 const styles = StyleSheet.create({
     container:{
-      backgroundColor:colors.color1,
+      backgroundColor:colors.oscuro,
       color: colors.letras,
         width:"100%",
         height:100,
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         alignItems:"center"
     },
     containerLandscape:{
-      backgroundColor:colors.color1,
+      backgroundColor:colors.oscuro,
       color: colors.letras,
         width:"100%",
         height:40,
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     },
     text:{
         fontSize:20,
-        color: colors.letras,
+        color: colors.neon,
         fontFamily:"Josefin"
     },
     logout:{

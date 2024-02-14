@@ -10,7 +10,7 @@ const OrderItem = ({order}) => {
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
-        <Text style={styles.text1}>{new Date(order.createdAt).toLocaleString()}</Text>
+        <Text style={styles.text1}>{(order.updateAt)}</Text>
         <Text style={styles.text2}>Total: ${total}</Text>
       </View>
       <FontAwesome name="search" size={24} color="black" />

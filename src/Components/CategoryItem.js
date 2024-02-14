@@ -25,8 +25,11 @@ const styles = StyleSheet.create({
     container:{
         width:"80%",
         marginHorizontal:"10%",
-        backgroundColor:colors.color1,
-        color: colors.letras,
+        backgroundColor:colors.letras,
+        borderWidth:2,
+        borderRadius: 15,
+        borderColor:colors.oscuro,
+        color: colors.oscuro,
         margin:10,
         padding:10,
         justifyContent:"center",
@@ -34,7 +37,7 @@ const styles = StyleSheet.create({
     },
     text:{
       fontSize:20,
-      color: colors.letras,
+      color: colors.oscuro,
       fontFamily:"Josefin"
   },
 })

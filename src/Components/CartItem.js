@@ -20,7 +20,7 @@ export default CartItem
 
 const styles = StyleSheet.create({
   container:{
-    backgroundColor:"green",
+    backgroundColor:colors.neon,
     margin:10,
     padding:10,
     borderWidth:2,

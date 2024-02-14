@@ -45,15 +45,4 @@ const styles = StyleSheet.create({
   container:{
   width:"100%"
 },
-  volver:{
-    padding:10,
-    backgroundColor:colors.color1,
-    width:"100%",
-    flexDirection:"row",
-    justifyContent:"center"
-},
-textVolver:{
-  color: colors.letras
-
-}
 })

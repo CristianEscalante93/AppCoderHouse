@@ -20,8 +20,8 @@ const  App = () => {
   return (
     <>
       <StatusBar
-      backgroundColor={colors.color1}
-      barStyle={colors.letras}
+      backgroundColor={colors.oscuro}
+      barStyle={colors.neon}
         />
       <Provider store={store}>
         <MainNavigator/>
