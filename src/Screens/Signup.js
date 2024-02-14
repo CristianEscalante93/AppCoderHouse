@@ -6,7 +6,9 @@ import { colors } from '../Global/colors'
 import { useSignupMutation } from '../App/service/auth'
 import { useDispatch } from 'react-redux'
 import { setUser } from '../Features/auth/authSlice'
+import { insertSession } from '../database/index.js'
 import { signupSchema } from '../validations/signupSchema'
+
 
 const Signup = ({navigation}) => {
   const dispatch = useDispatch()
@@ -20,9 +22,14 @@ const Signup = ({navigation}) => {
   const [confirmPasswordError, setConfirmPasswordError]= useState("")
 
   useEffect(()=>{
-    if(isSuccess) dispatch(setUser(data))
+    if(isSuccess) {
+      dispatch(setUser(data))
+      insertSession(data)
+      .then((result)=> console.log(result))
+      .catch((err) => console.log(err))}
     if(isError) console.log(error)
   },[data,isError,isSuccess])
+
 
 
   const onSubmit = () => {

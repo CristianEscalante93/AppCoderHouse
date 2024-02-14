@@ -6,11 +6,8 @@ import { base_url } from '../../firebase/db'
 export const shopApi = createApi({
   reducerPath: 'shopApi',
   baseQuery: fetchBaseQuery({ baseUrl: base_url }),
-  tagTypes:["image"],
+  tagTypes:["image","location", "order"],
   endpoints: (builder) => ({
-    // getProducts: builder.query({
-    //   query: () => `products.json`,
-    // }),
     getProducts: builder.query({
       query: (category) => `products.json?orderBy="category"&equalTo="${category}"`,
     }),
@@ -21,11 +18,22 @@ export const shopApi = createApi({
       query: () => `categories.json`,
     }),
     postOrders: builder.mutation({
-      query: (order) => ({
-        url: "orders.json",
-        method: "POST",
-        body: order
+      query: ({localId,order}) => ({
+        url:`orders/${localId}.json`,
+        method:"POST",
+        body:order
       }),
+      invalidatesTags:["order"]
+  }),
+    
+    getOrders: builder.query({
+      query: (localId) => `orders/${localId}.json`,
+      transformResponse:(response) => {
+      if(!response) return []
+      const data = Object.keys(response).map(key =>({id:key,...response[key]}))
+      return data
+      },
+      providesTags:["order"]
     }),
     postProfileImage: builder.mutation({
       query: ({localId,image}) => ({
@@ -39,9 +47,20 @@ export const shopApi = createApi({
       query: (localId) => `profileImage/${localId}.json`,
       providesTags:["image"]
     }),
-    
+    postUserLocation: builder.mutation({
+      query: ({localId,locationFormatted}) => ({
+        url:`userLocation/${localId}.json`,
+        method:"PUT",
+        body:locationFormatted
+      }),
+      invalidatesTags:["location"]
+    }),
+    getUserLocation: builder.query({
+      query: (localId) => `userLocation/${localId}.json`,
+      providesTags:["location"]
+    }),
   }),
 })
 
 
-export const { useGetProductsQuery , useGetProductQuery , useGetCategoriesQuery , usePostOrdersMutation , usePostProfileImageMutation , useGetProfileImageQuery } = shopApi
+export const { useGetProductsQuery , useGetProductQuery , useGetCategoriesQuery , usePostOrdersMutation , usePostProfileImageMutation , useGetProfileImageQuery , usePostUserLocationMutation , useGetUserLocationQuery , useGetOrdersQuery } = shopApi

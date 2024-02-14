@@ -1,6 +1,10 @@
-import { StyleSheet, Text, View, useWindowDimensions } from 'react-native'
+import { Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-native'
 import { colors } from '../Global/colors'
 import { useEffect, useState } from 'react'
+import {MaterialIcons} from "@expo/vector-icons"
+import { deleteAllSession } from '../database'
+import { useDispatch, useSelector } from 'react-redux'
+import { clearUser } from '../Features/auth/authSlice'
 
 const Header = ({title}) => {
 
@@ -15,9 +19,20 @@ const Header = ({title}) => {
     }
   },[width,height])
 
+  const dispatch = useDispatch()
+  const localId = useSelector(state=> state.auth.value.localId)
+
+  const onLogout= ()=>{
+    deleteAllSession().then(result => console.log(result))
+    dispatch(clearUser())
+  }
+
   return (
     <View style= {landscape ? styles.containerLandscape : styles.container}>
       <Text style={styles.text}>{title}</Text>
+      {localId && <Pressable onPress={onLogout} style={styles.logout}>
+        <MaterialIcons name="logout" size={30} color="black"/>
+      </Pressable>}
     </View>
   )
 }
@@ -45,5 +60,9 @@ const styles = StyleSheet.create({
         fontSize:20,
         color: colors.letras,
         fontFamily:"Josefin"
+    },
+    logout:{
+        position: "absolute",
+        right:10
     }
 })
