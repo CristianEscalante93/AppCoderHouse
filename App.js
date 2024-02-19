@@ -6,6 +6,7 @@ import { store } from "./src/App/store.js"
 import { Provider } from 'react-redux'
 import MainNavigator from './src/Navigation/MainNavigator.js'
 import { init } from './src/database/index.js'
+import Toast from 'react-native-toast-message';
 
 init()
   .then(()=> console.log("DB Initialized"))
@@ -26,6 +27,7 @@ const  App = () => {
       <Provider store={store}>
         <MainNavigator/>
       </Provider>
+      <Toast />
     </>
   )
 }

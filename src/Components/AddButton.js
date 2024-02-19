@@ -7,6 +7,7 @@ const AddButton = ({title,onPress}) => {
     <Pressable style={styles.container} onPress={onPress}>
         <Text style={styles.text}>{title}</Text>
     </Pressable>
+    
   )
 }
 
@@ -14,8 +15,9 @@ export default AddButton
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor:colors.color1,
+        backgroundColor:colors.oscuro,
         width:"70%",
+        borderRadius: 10,
         paddingVertical:8,
         margin:10
     },

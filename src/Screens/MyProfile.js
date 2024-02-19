@@ -1,7 +1,9 @@
-import { StyleSheet, View,Image,Text } from 'react-native'
+import { StyleSheet, View,Image,Text} from 'react-native'
 import AddButton from '../Components/AddButton'
 import { useGetProfileImageQuery, useGetUserLocationQuery } from '../App/service/shopServices'
 import { useSelector } from 'react-redux'
+import { colors } from '../Global/colors'
+import Toast from 'react-native-toast-message';
 
 const MyProfile = ({navigation}) => {
     const localId = useSelector(state => state.auth.value.localId)
@@ -16,7 +18,11 @@ const MyProfile = ({navigation}) => {
             resizeMode='cover'
         />
         <Text>{location?.address}</Text>
-        <AddButton title={"Agregar imagen al perfil"} onPress={()=> navigation.navigate("ImageSelector")}/>
+        <AddButton title={"Agregar imagen al perfil"} onPress={()=> {navigation.navigate("ImageSelector"),Toast.show({
+      type: 'success',
+      text1: 'Hello',
+      text2: 'This is some something 👋'
+    })}}/>
         <AddButton title={location ? "Cambiar ubicación" : "Agregar ubicación"} onPress={()=> navigation.navigate("LocationSelector")}/>
     </View>
   )
@@ -34,6 +40,10 @@ const styles = StyleSheet.create({
     },
     image:{
         width:200,
-        height:200
+        height:200,
+        borderWidth:2,
+        borderColor:colors.neon,
+        borderRadius: 10
+        
     }
 })

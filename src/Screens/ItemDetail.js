@@ -1,15 +1,21 @@
-import { StyleSheet, Text, View, Image, Pressable } from 'react-native'
+import { StyleSheet, Text, View, Image, Pressable , ToastAndroid, Button} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { colors } from '../Global/colors'
 import { useDispatch } from 'react-redux'
 import { addItem } from '../Features/cart/cartSlice'
+import Toast from 'react-native-toast-message';
 
 const ItemDetail = ({navigation , route}) => {
   const dispatch = useDispatch()
   const product = useSelector((state)=> state.shop.value.productSelected)
 
   const addCartProduct = ()=>{
+    Toast.show({
+      type: 'success',
+      text1: `${product.title}`,
+      text2: 'Producto agregado al carrito 🛒'
+    })
     dispatch(addItem(product))
     navigation.navigate("CartStack")
   }

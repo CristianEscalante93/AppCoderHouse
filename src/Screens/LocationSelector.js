@@ -6,6 +6,7 @@ import MapPreview from '../Components/MapPreview'
 import { googleApi } from '../firebase/googleApi'
 import {usePostUserLocationMutation } from '../App/service/shopServices'
 import { useSelector } from 'react-redux'
+import { colors } from '../Global/colors'
 
 const LocationSelector = ({navigation}) => {
 
@@ -61,6 +62,7 @@ const LocationSelector = ({navigation}) => {
           ...location
         }
         const data =  await triggerPostUserLocation({localId,locationFormatted})
+        
         navigation.goBack()
       } catch (error) {
         setErrorMsg(error.message)
@@ -72,7 +74,7 @@ const LocationSelector = ({navigation}) => {
     <View style={styles.container}>
       <Text style={styles.text}>{address}</Text>
       <Text style={styles.text}>{address2}</Text>
-      <MapPreview latitude={location.latitude} longitude={location.longitude}/>
+      <MapPreview  latitude={location.latitude} longitude={location.longitude}/>
       <AddButton title="Confirmar Localizacion" onPress={onConfirmAddress}/>
     </View>
   )
@@ -88,5 +90,5 @@ const styles = StyleSheet.create({
     },
     text:{
         fontSize:16
-    }
+    },
 })

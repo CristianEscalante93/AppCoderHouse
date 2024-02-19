@@ -1,6 +1,7 @@
 import { StyleSheet,Image} from 'react-native'
 import React from 'react'
 import { googleApi } from '../firebase/googleApi'
+import { colors } from '../Global/colors'
 
 const MapPreview = ({latitude,longitude}) => {
 
@@ -21,6 +22,9 @@ export default MapPreview
 const styles = StyleSheet.create({
     image:{
         width:300,
-        height:300   
+        height:300,   
+        borderWidth:2,
+        borderColor:colors.oscuro,
+        borderRadius: 10
     }
 })

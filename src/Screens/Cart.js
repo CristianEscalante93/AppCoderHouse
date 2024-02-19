@@ -5,6 +5,7 @@ import CartItem from '../Components/CartItem'
 import { colors } from '../Global/colors'
 import { useSelector } from 'react-redux'
 import { usePostOrdersMutation } from '../App/service/shopServices'
+import Toast from 'react-native-toast-message';
 
 const Cart = ({navigation}) => {
 
@@ -13,6 +14,11 @@ const Cart = ({navigation}) => {
   const localId = useSelector(state => state.auth.value.localId)
 
   const addOrder = ()=>{
+    Toast.show({
+      type: 'success',
+      text1: 'Gracias',
+      text2: 'Orden realizada!!!'
+    })
     triggerPostOrder({localId,order:cart})
     navigation.navigate("OrdersStack" )
   }
