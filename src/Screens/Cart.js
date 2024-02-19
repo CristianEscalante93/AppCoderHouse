@@ -6,12 +6,22 @@ import { colors } from '../Global/colors'
 import { useSelector } from 'react-redux'
 import { usePostOrdersMutation } from '../App/service/shopServices'
 import Toast from 'react-native-toast-message';
+import LoadingSpinner from '../Components/LoadingSpinner.js'
+
 
 const Cart = ({navigation}) => {
 
   const cart= useSelector(state => state.cart.value)
   const [triggerPostOrder] = usePostOrdersMutation()
   const localId = useSelector(state => state.auth.value.localId)
+
+  const [loading , setLoading] = useState(true)
+  
+  useEffect(()=>{
+    if(cart.total) setLoading(false)
+  },[cart])
+  
+  if(loading) return  <LoadingSpinner/>
 
   const addOrder = ()=>{
     Toast.show({

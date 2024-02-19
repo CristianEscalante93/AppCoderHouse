@@ -10,12 +10,12 @@ const Categories = ({navigation,route}) => {
 
   const [loading , setLoading] = useState(true)
 
-  const {data:categories , isLoading} = useGetCategoriesQuery()
+  const {data:categories , isLoading, error, isError} = useGetCategoriesQuery()
 
   useEffect(()=>{
     if(categories) setLoading(false)
   },[categories,isLoading])
-  console.log(categories)
+  
   if(loading) return  <LoadingSpinner/>
 
 

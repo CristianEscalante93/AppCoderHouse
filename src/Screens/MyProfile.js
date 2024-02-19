@@ -18,11 +18,7 @@ const MyProfile = ({navigation}) => {
             resizeMode='cover'
         />
         <Text>{location?.address}</Text>
-        <AddButton title={"Agregar imagen al perfil"} onPress={()=> {navigation.navigate("ImageSelector"),Toast.show({
-      type: 'success',
-      text1: 'Hello',
-      text2: 'This is some something 👋'
-    })}}/>
+        <AddButton title={"Agregar imagen al perfil"} onPress={()=> {navigation.navigate("ImageSelector")}}/>
         <AddButton title={location ? "Cambiar ubicación" : "Agregar ubicación"} onPress={()=> navigation.navigate("LocationSelector")}/>
     </View>
   )
